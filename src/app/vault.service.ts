@@ -66,13 +66,17 @@ export class VaultService {
       })
       const oldData = await migrator.exportVault();
       if (!!oldData) {
-        alert(JSON.stringify(oldData));
+        setTimeout(() => {
+          alert(JSON.stringify(oldData));
+        }, 3000);
         // Import data into new vault
         await this.vault.importVault(oldData);
         // Remove all of the old data from the legacy vault
         //await migrator.clear();
       } else {
-        alert('No data in the v4 vault');
+        setTimeout(() => {
+          alert('No data in the v4 vault');
+        }, 3000);
       }
     } catch (err) {
       // Something went wrong...
