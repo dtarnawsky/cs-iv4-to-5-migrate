@@ -1,0 +1,6 @@
+{
+	"appId": "io.ionic.starter",
+	"appName": "iv4-migrate",
+	"webDir": "www",
+	"bundledWebRuntime": false
+}
