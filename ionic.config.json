@@ -1,0 +1,7 @@
+{
+  "name": "iv4-migrate",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

@@ -57,18 +57,18 @@ export class VaultService {
   async migrate() {
     try {
       const migrator = new VaultMigrator({
-        authMode: AuthMode.BiometricOnly,
+        authMode: AuthMode.BiometricOrPasscode,
         restoreSessionOnReady: false, // whether or not to immediately attempt to restore the session when the vault is ready
         unlockOnReady: false, // set true to auto prompt the user to unlock when vault is ready
         unlockOnAccess: true, // set to true to auto prompt the user to unlock on first read access
         lockAfter: 5000, // lock after 5 seconds in the background
         hideScreenOnBackground: true // when in app launcher mode hide the current screen and display the splashscreen
-    })
+      })
       const oldData = await migrator.exportVault();
       if (!!oldData) {
         alert(JSON.stringify(oldData));
         // Import data into new vault
-        await this.vault.importVault(oldData);        
+        await this.vault.importVault(oldData);
         // Remove all of the old data from the legacy vault
         //await migrator.clear();
       } else {
@@ -81,7 +81,7 @@ export class VaultService {
   }
 
   async init() {
-    this.migrate();
+    await this.migrate();
     this.vault.onLock(() => {
       console.log('Lock happened');
       this.ngZone.run(() => {
